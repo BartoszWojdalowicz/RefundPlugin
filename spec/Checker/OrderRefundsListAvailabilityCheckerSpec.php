@@ -42,7 +42,7 @@ final class OrderRefundsListAvailabilityCheckerSpec extends ObjectBehavior
         $this('00000007')->shouldReturn(true);
     }
 
-    function it_returns_true_if_order_is_refunded_and_not_free(
+    function it_returns_false_if_order_is_refunded_and_not_free(
         OrderRepositoryInterface $orderRepository,
         OrderInterface $order,
     ): void {
@@ -50,7 +50,7 @@ final class OrderRefundsListAvailabilityCheckerSpec extends ObjectBehavior
         $order->getPaymentState()->willReturn(OrderPaymentStates::STATE_REFUNDED);
         $order->getTotal()->willReturn(100);
 
-        $this('00000007')->shouldReturn(true);
+        $this('00000007')->shouldReturn(false);
     }
 
     function it_returns_true_if_order_is_partially_refunded_and_not_free(
